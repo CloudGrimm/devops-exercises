@@ -2155,7 +2155,6 @@ There is also "Management Plane" which refers to monitoring and management funct
 * Internet Protocol (IP) - assists in routing packets from one machine to another
 * Internet Control Message Protocol (ICMP) - lets one know what is going such as error messages and debugging information
 </b><details>
-</b></details>
 
 <details>
 <summary>What is HSTS?</summary><br><b>
