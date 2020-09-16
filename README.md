@@ -2,7 +2,7 @@
 
 :information_source: &nbsp;This repo contains questions and exercises on various technical topics, sometimes related to DevOps and SRE :)
 
-:bar_chart: &nbsp;There are currently **1329** questions and exercises
+:bar_chart: &nbsp;There are currently **1343** questions and exercises
 
 :busts_in_silhouette: &nbsp;[Join](https://www.facebook.com/groups/538897960007080) our [Facebook group](https://www.facebook.com/groups/538897960007080) for additional exercises, articles and more resources on DevOps
 
@@ -2020,6 +2020,15 @@ Systems keep an ARP look-up table where they store information about what IP add
 
 <details>
 <summary>What is DHCP? How does it works?</summary><br><b>
+
+It stands for Dynamic Host Configuration Protocol, and allocates IP addresses, subnet masks and gateways to hosts. This is how it works:
+
+* A host upon entering a network, broadcasts a message in search of a DHCP server (DHCP DISCOVER)
+* An offer message is sent back by the DHCP server as a packet containing lease time, subnet mask, IP addresses, etc (DHCP OFFER)
+* Depending on which offer accepted, the client sends back a reply broadcast letting all DHCP servers know (DHCP REQUEST)
+* Server sends an acknowledgment (DHCP ACK)
+
+Read more [here](https://linuxjourney.com/lesson/dhcp-overview)
 </b></details>
 
 <details>
@@ -2128,6 +2137,36 @@ There is also "Management Plane" which refers to monitoring and management funct
 00110011110100011101
 </b></details>
 
+<details>
+<summary>Give examples of protocols found in the application layer</summary><br><b>
+
+* Hypertext Transfer Protocol (HTTP) - used for the webpages on the internet
+* Simple Mail Transfer Protocol (SMTP) - email transmission
+* Telecommunications Network - (TELNET) - terminal emulation to allow client access to telnet server
+* File Transfer Protocol (FTP) - facilitates transfer of files between any two machines
+* Domain Name System (DNS) - domain name translation
+* Dynamic Host Configuration Protocol (DHCP) - allocates IP addresses, subnet masks and gateways to hosts
+* Simple Network Management Protocol (SNMP) - gathers data of devices on the network
+</b></details>
+
+<details>
+<summary>Give examples of protocols found in the network Layer</summary><br><b>
+
+* Internet Protocol (IP) - assists in routing packets from one machine to another
+* Internet Control Message Protocol (ICMP) - lets one know what is going such as error messages and debugging information
+</b></details>
+
+<details>
+<summary>What is HSTS?</summary><br><b>
+HTTP Strict Transport Security is a web server directive that informs user agents and web browsers how to handle its connection through a response header sent at the very beginning and back to the browser. This forces connections over HTTPS encryption, disregarding any script's call to load any resource in that domain over HTTP. 
+
+Read more [here](https://www.globalsign.com/en/blog/what-is-hsts-and-how-do-i-use-it#:~:text=HTTP%20Strict%20Transport%20Security%20(HSTS,and%20back%20to%20the%20browser.)
+</b></details>
+
+<details>
+<summary>What is the difference if any between SSL and TLS?</summary><br><b>
+</b></details>
+
 ## Linux
 
 <details>
@@ -2154,7 +2193,16 @@ An open question. Answer based on your real experience. You can highlight one or
   * man
   * nslookup or dig
   * pwd
-  * df</summary><br><b>
+  * df
+  * file
+  * cat
+  * less
+  * history
+  * cp
+  * mv
+  * mkdir
+  * find
+  * alias</summary><br><b>
 
   * ls - list files and directories. You can highlight common flags like -d, -a, -l, ...
   * rm - remove files and directories. You should mention -r for recursive removal
@@ -2166,6 +2214,15 @@ An open question. Answer based on your real experience. You can highlight one or
   * nslookup or dig - query nameservers
   * pwd - print working directory
   * df - provides info regarding file system disk space usage
+  * file - to find out what kind of a file it is
+  * cat - quickly read a file without opening the file, it only displays the file contents
+  * less - view text files larger than a simple output
+  * history - get the history of the commands previously entered
+  * cp - make a copy of files and pasting it to a destination
+  * mv - moving files and also renaming them
+  * mkdir - create a directory if it does not exist already
+  * find - searching files
+  * alias - shorten repetitive long commands for efficient command line usage
 </b></details>
 
 <details>
@@ -2176,6 +2233,13 @@ An open question. Answer based on your real experience. You can highlight one or
   * cd ..
   * cd .
   * cd -</summary><br><b>
+  cd or "change directory" helps one to change directory when they want to.
+
+  * cd ~ -> this defaults to your "home directory"
+  * cd -> this defaults to your "home directory"
+  * cd .. -> goes to the directory above your current i.e parent directory
+  * cd . -> this is the directory you currently in
+  * cd - -> takes you the previous directory you were just at
 </b></details>
 
 <details>
@@ -2186,10 +2250,14 @@ mv command.
 
 <details>
 <summary>Explain each field in the output of `ls -l` command</summary><br><b>
+It shows a detailed list of files in a long format. From the left; 
+
+* file permissions, number of links, owner name, owner group, file size, timestamp of last modification and directory/file name
 </b></details>
 
 <details>
 <summary>What are hidden files/directories? How to list them?</summary><br><b>
+These are files directly not displayed after performing a standard ls direct listing. An example of these files are .bashrc which are used to execute some scripts. Some also store configuration about services on your host like .KUBECONFIG. The command used to list them is, 
 
 `ls -a`
 </b></details>
@@ -2260,14 +2328,19 @@ Using the `chmod` command.
 
 <details>
 <summary>What this command does? <code>chmod +x some_file</code></summary><br><b>
+It adds execute permissions to all sets i.e user, group and others
 </b></details>
 
 <details>
 <summary>Explain what is setgid and setuid</summary><br><b>
+
+* setuid is a linux file permission that permits a user to run a file or program with the permissions of the owner of that file. This is possible by elevation of current user privileges. 
+* setgid is a process when executed will run as the group that owns the file.
 </b></details>
 
 <details>
 <summary>What is the purpose of sticky bit?</summary><br><b>
+Its a bit that only allows the owner or the root user to delete or modify the file. 
 </b></details>
 
 <details>
@@ -2276,13 +2349,17 @@ Using the `chmod` command.
   * chmod
   * chown
   * chgrp</summary><br><b>
+
+  * chmod - changes access permissions to files system objects
+  * chown - changes the owner of file system files and directories
+  * chgrp - changes the group associated with a file system object 
 </b></details>
 
 <details>
 <summary>You try to delete a file but it fails. Name at least three different reason as to why it could happen</summary><br><b>
 
 * No more disk space
-* No more indoes
+* No more inodes
 * No permissions
 </b></details>
 
@@ -2965,6 +3042,7 @@ Using nc is one way<br>
 
 <details>
 <summary>What are packet sniffers? Have you used one in the past? If yes, which packet sniffers have you used and for what purpose?</summary><br><b>
+It is a network utility that analyses and may inject tasks into the data-stream travelling over the targeted network.
 </b></details>
 
 <details>
@@ -7648,6 +7726,8 @@ of consistency for their legacy applications in a hybrid or multicloud world. Fr
 * application platform -> It consists of open source tools like K8s, Knative, Istio and Tekton
 * Enterprises -> these are usually organisations with complex needs 
 * Consistency -> to have the same policies declaratively initiated to be run anywhere securely e.g on-prem, GCP or other-clouds (AWS or Azure)
+
+fun fact: Anthos is flower in greek, they grow in the ground (earth) but need rain from the clouds to flourish.
 </b></details>
 
 <details>
@@ -7801,7 +7881,6 @@ As it does not support stateful applications or sticky sessions, it is suitable 
 * API gateways, API middleware, web front ends and Microservices
 * Event handlers, ETL
 </b></details>
-
 
 ## OpenStack
 
